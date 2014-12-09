@@ -1,5 +1,5 @@
 {
-    "name": "PeerJ/mpdf",
+    "name": "peerj/mpdf",
     "type": "library",
     "description": "mPDF is a PHP class which generates PDF files from UTF-8 encoded HTML. It is based on FPDF and HTML2FPDF, with a number of enhancements. (V 5.7.2)",
     "keywords": ["php", "pdf", "utf-8"],
