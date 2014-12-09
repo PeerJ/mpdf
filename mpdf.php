@@ -824,6 +824,21 @@ var $innerblocktags;
 // **********************************
 // **********************************
 
+/*
+ * Allow additional fontdata without adding to config_fonts.php
+ * usage:
+ * $mpdf = new mPDF(array('unifont' => array('R' => "unifont.ttf")));
+ * $mpdf->mPDF('s');
+ *
+ */
+function __construct($fontdata = array())
+{
+  require(_MPDF_PATH.'config_fonts.php');
+  foreach($fontdata as $name => $data) {
+    $this->fontdata[$name] = $data;
+  }
+}
+
 function mPDF($mode='',$format='A4',$default_font_size=0,$default_font='',$mgl=15,$mgr=15,$mgt=16,$mgb=16,$mgh=9,$mgf=9, $orientation='P') {
 
 /*-- BACKGROUNDS --*/
@@ -1133,7 +1148,8 @@ function mPDF($mode='',$format='A4',$default_font_size=0,$default_font='',$mgl=1
 	$this->SetDisplayPreferences(''); 
 
 	// Font data
-	require(_MPDF_PATH.'config_fonts.php');
+        // Moved to __contruct()
+        // require(_MPDF_PATH.'config_fonts.php');
 	// Available fonts
 	$this->available_unifonts = array();
 	foreach ($this->fontdata AS $f => $fs) {
